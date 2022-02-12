@@ -1,4 +1,0 @@
-curl -X POST 'https://slack.com/api/chat.postMessage' \
--d 'token=xoxb-2102527046113-3079034186087-tCqKymQmPnA98LxI8z3Ev6Y7' \
--d 'channel=#general' \
--d 'text=テスト'
