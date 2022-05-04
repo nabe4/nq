@@ -13,18 +13,19 @@ import (
 func PostSlack(text string) {
 	loadEnv()
 	token := os.Getenv("SLACK_TOKEN")
-	fmt.Println(token)
-	params := url.Values{}
-	params.Add("token", token)
-	params.Add("channel", "#general")
-	params.Add("text", text)
-	resp, err := http.PostForm("https://slack.com/api/chat.postMessage", params)
+	channel := os.Getenv("SLACK_CHANNEL")
+	slack_url := os.Getenv("SLACK_URL")
+	params := url.Values{
+		"token":   {token},
+		"channel": {channel},
+		"text":    {text},
+	}
+	resp, err := http.PostForm(slack_url, params)
 	if err != nil {
 		log.Printf("Request Failed: %s", err)
 		return
 	}
 	log.Printf("Request Success: %s", resp.Status)
-	// fmt.Println(resp)
 }
 
 func loadEnv() {
@@ -33,7 +34,4 @@ func loadEnv() {
 	if err != nil {
 		fmt.Printf("読み込み出来ませんでした: %v", err)
 	}
-
-	// message := os.Getenv("SAMPLE_MESSAGE")
-	// fmt.Println(message)
 }
