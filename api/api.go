@@ -14,7 +14,7 @@ func PostSlack(text string) {
 	loadEnv()
 	token := os.Getenv("SLACK_TOKEN")
 	channel := os.Getenv("SLACK_CHANNEL")
-	slack_url := os.Getenv("SLACK_URL")
+	slack_url := os.Getenv("SLACK_POST_API_URL")
 	params := url.Values{
 		"token":   {token},
 		"channel": {channel},
